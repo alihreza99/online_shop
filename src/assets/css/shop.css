@@ -1,0 +1,80 @@
+.pedar {
+  justify-content: center;
+  position: absolute;
+  display: grid;
+  column-gap: 3%;
+  grid-template-columns: 30% 30% 30%;
+  padding: 10px;
+  width: 100%;
+  margin-top: 60px;
+}
+.item-kharid {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 10px;
+  text-align: center;
+  height: 550px;
+  overflow-x: hidden;
+  border-radius: 10px;
+  position: relative;
+}
+.item-kharid img {
+  width: 60%;
+  height: 210px;
+  border-radius: 10px;
+  mix-blend-mode: multiply;
+}
+.item-kharid span {
+  font-size: medium;
+  padding-top: 20px;
+  color: rgb(9, 55, 70);
+  margin-top: 20px;
+
+}
+
+.deletebtn{
+  color: black;
+  background-color: red;
+  margin-top: 20px;
+  width: 30%;
+  height: 50px;
+  border-radius: 5%;
+  border: none;
+}
+.shopnumber{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
+}
+.shopnumber p{
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: black;
+  color: aliceblue;
+  width: 40px;
+}
+.shopnumber i{
+  color: white;
+}
+.abatementbtn{
+  height: 30px;
+  width: 30px;
+  border-radius: 20px;
+  border: none;
+  color: black;
+  margin-right: 10px;
+  background-color: rgb(25, 46, 102);
+  
+}
+.additionbtn{
+  height: 30px;
+  width: 30px;
+  border-radius: 20px;
+  border: none;
+  color: black;
+  margin-left: 10px;
+  background-color: rgb(25, 46, 102);
+}

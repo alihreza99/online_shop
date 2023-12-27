@@ -1,0 +1,66 @@
+.nav{
+  position: relative;
+  width: 100%;
+  top: 0;
+  height: 80px;
+  background-color: rgb(38, 39, 41);
+  direction: rtl;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.navleft{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+}
+.navright{
+  position: absolute;
+  left: 5%;
+  width: 30px;
+  height: 60px;
+}
+.routlink{
+  text-decoration: none;
+  margin-top: 25px;
+  margin-right: 5%;
+  direction: rtl;
+  color: aliceblue;
+  margin-right: 20px;
+}
+.routlinktextdelete{
+  color: red;
+}
+.shop{
+  font-size: 20px;
+}
+.numberofitems{
+  width: 29px;
+  height: 25px;
+  background-color: red;
+  left: 18px;
+  top: 15px;
+  border-radius: 13px;
+  position:absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.numberofitems p{
+  color: white;
+  font-size: smaller;
+  margin-top: 2px;
+}
+
+
+
+
+
+
+
+@media only screen and (max-width: 550px) {
+.nav{
+  height: 120px;
+}
+}

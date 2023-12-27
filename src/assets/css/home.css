@@ -1,0 +1,298 @@
+.banner {
+  position: relative;
+  direction: rtl;
+  height: 300px;
+  border-radius: 10px;
+  color: #fff;
+  background-color: gray;
+  margin: 1%;
+}
+.shopinfo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-image: url("../../assets/pics/headphone.jpg");
+  background-repeat: round;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.yalda {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-image: url("../../assets/pics/watermelon-yalda.jpg");
+  background-repeat: round;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+}
+.yalda h1 {
+  margin-top: 10px;
+  color: red;
+}
+
+.shopinfo p {
+  margin-top: 200px;
+}
+.bannerslide {
+  direction: rtl;
+  width: 70%;
+  margin: 2%;
+  height: 70%;
+}
+
+.page-item1 {
+  position: absolute;
+  background-color: rgb(0, 0, 0, 0.9);
+  color: rgb(196, 219, 196);
+  height: 40px;
+  width: 40px;
+  border: none;
+  border-radius: 50px;
+  animation: prevPage 0.5s forwards;
+  margin-left: 2%;
+  top: 220px;
+}
+.page-item2 {
+  position: absolute;
+  background-color: rgb(0, 0, 0, 0.9);
+  color: rgb(196, 219, 196);
+  height: 40px;
+  width: 40px;
+  border: none;
+  border-radius: 50px;
+  animation: nextPage 0.5s forwards;
+  margin-left: 94%;
+  top: 220px;
+}
+.offparent {
+  position: relative;
+  width: 90%;
+  height: 550px;
+  margin: 5%;
+  background-color: rgb(28, 31, 36);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.offpagebtns {
+ position: absolute;
+ bottom: 15px;
+ width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.offpagelbtn {
+  border: none;
+  background-color: rgb(39, 37, 37);
+  color: #fff;
+  height: 50px;
+  width: 50px;
+}
+.offpagerbtn {
+  border: none;
+  background-color: rgb(39, 37, 37);
+  color: #fff;
+  height: 50px;
+  width: 50px;
+}
+.toallitems Link {
+  text-decoration: none;
+}
+.toallitems {
+  border: none;
+  width: 20%;
+  border-radius: 2px;
+  background-color: #86d62b;
+  margin-left: 40%;
+  margin-top: 10px;
+}
+.page-footer {
+  margin-top: 10px;
+  color: aliceblue;
+  direction: rtl;
+}
+.text-uppercase {
+  color: white;
+}
+.list-unstyled li {
+  margin-left: 25px;
+}
+.offpage {
+  margin-top: 500px;
+}
+.page-footer p {
+  color: azure;
+}
+.page-footer i {
+  font-size: 60px;
+  margin-top: 50px;
+}
+.footer-copyright p {
+  color: #86d62b;
+}
+.footerlink {
+  text-decoration: none;
+}
+
+.select {
+  direction: rtl;
+}
+.serchbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.allitemsnav {
+  width: 50%;
+  margin-top: 5px;
+  margin-left: 50px;
+}
+
+.searchBar {
+  direction: rtl;
+  top: 0;
+  width: 30%;
+  margin-top: 8px;
+  margin-right: 100px;
+}
+
+.input {
+  border-radius: 0 10px 10px 0;
+  height: 30px;
+  border: 1px solod black;
+}
+
+.button {
+  border-radius: 10px 0 0 10px;
+  border: none;
+  background-color: aqua;
+  height: 30px;
+}
+.map-wrap {
+  position: relative;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 50px;
+  height: calc(100vh - 77px);}
+
+.map {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.locations{
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ direction: rtl;
+}
+.locationsselect{
+  width: 100%;
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ direction: rtl;
+}
+.locationsselect p{
+  color: red;
+  margin-right: 10px;
+  direction: rtl;
+
+}
+.location{
+  width: 500px;
+  margin: 10px;
+ direction: rtl;
+}
+.submitbtn{
+  width: 30%;
+  margin-right: 35%;
+  margin-top: 10px;
+  color: rgb(253, 253, 253);
+  background-color: rgb(9, 10, 88);
+  border-radius: 10px;
+  border: none;
+}
+.emptyparent{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.emptypage{
+  color: rgb(255, 7, 7);
+  direction: rtl;
+  margin-top: 50px;
+}
+@keyframes nextPage {
+  0% {
+    opacity: 0;
+    transform: translate(10em, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes prevPage {
+  0% {
+    opacity: 0;
+    transform: translate(-10em, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+@media only screen and (max-width: 1000px) {
+
+.location{
+  width: 300px;
+}
+}
+@media only screen and (max-width: 800px) {
+
+.page-footer i {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.page-footer {
+  margin-top: 5px;
+  color: aliceblue;
+  direction: rtl;
+}
+.serchbar {
+  display: flex;
+  flex-direction: column;
+}
+.searchBar {
+  direction: rtl;
+  top: 0;
+  width: 50%;
+  margin-top: 8px;
+  margin-right: 10px;
+}
+.input{
+width: 50%;
+}
+.locationsselect{
+  width: 100%;
+ display: flex;
+ flex-direction: column;
+}
+.location{
+  width: 300px;
+}
+}
