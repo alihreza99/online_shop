@@ -1,6 +1,6 @@
 import react, { useState, useEffect, useRef } from "react";
 
-import Card from "../../components/offcard";
+import Card from "./offcard";
 
 export default function Off() {
   const [items, setitems] = useState([]);

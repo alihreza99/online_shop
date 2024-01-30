@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import Select from "react-select";
-import { city } from "../../data";
+import { city } from "./../data";
 export default function Done() {
   const mapContainer = useRef(null);
   const map = useRef(null);

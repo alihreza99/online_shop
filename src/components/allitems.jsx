@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
-import Card from "../../components/offcard";
+import Button from "react-bootstrap/Button";
+import Card from "./offcard";
 export default function Kala() {
   const [content, setContent] = useState(null);
   const [listShop, setListShop] = useState(
@@ -53,15 +54,13 @@ export default function Kala() {
             </div>
             <div class="searchBar">
               <input
-                className="input"
-                placeholder={"دسته بندی ها"}
+                className="form-control"
+                name="search"
+                placeholder={"نام کالارا سرچ کنید"}
                 onChange={(e) => {
                   setSearch(e.target.value.toLowerCase());
                 }}
               />
-              <button className="button">
-                <i className="fa-solid fa-magnifying-glass"></i>
-              </button>
             </div>
           </div>
         </div>
@@ -72,12 +71,14 @@ export default function Kala() {
             if (selectedOption == "all" || selectedOption.value == "all") {
               return (
                 <>
-                  <Card
-                    id={data.id}
-                    img={data.image}
-                    title={data.category}
-                    price={data.price}
-                  />
+                  <div className="pedar_items">
+                    <Card
+                      id={data.id}
+                      img={data.image}
+                      title={data.category}
+                      price={data.price}
+                    />
+                  </div>
                 </>
               );
             }
@@ -85,12 +86,14 @@ export default function Kala() {
             if (data.category == selectedOption.value) {
               return (
                 <>
-                  <Card
-                    id={data.id}
-                    img={data.image}
-                    title={data.category}
-                    price={data.price}
-                  />
+                  <div className="pedar_items">
+                    <Card
+                      id={data.id}
+                      img={data.image}
+                      title={data.category}
+                      price={data.price}
+                    />
+                  </div>
                 </>
               );
             }

@@ -3,36 +3,52 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useDispatch } from "react-redux";
+import { store } from "../../../redux/store";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import Spinner from "../../components/spinner";
+import Spinner from "../../../components/spinner";
 import Form from "react-bootstrap/Form";
-import Toast from "../../components/toast";
+import Toast from "../../../components/toast";
 
 const schema = yup.object().shape({
   firstname: yup.string().required("لطفا نام خود را وارد کنید"),
+  price: yup
+    .number()
+    .typeError("لطفا مبلغ  ورودی خود را وارد کنید")
+    .required("لطفا مبلغ  ورودی خود را وارد کنید"),
   pass: yup
     .string()
     .required("لطفا رمز خود را وارد کنید")
     .min(4, "رمز شما باید حداقل دارای 4 عدد باشد"),
+  email: yup
+    .string()
+    .email("متن وارد شده اشتباه است ")
+    .required("لطفا ایمیل خود را وارد کنید"),
 });
 
-const Login = () => {
+const Sign = () => {
   const dispatch = useDispatch();
   const recaptcha = useRef();
   const [istoast, settoast] = useState(false);
   const [istoast2, settoast2] = useState(false);
-  const [istoast3, settoast3] = useState(false);
 
-  const users = useSelector((state) => state.auth.entities);
-  let [viewModelstate, setviewModelstate] = useState({
-    username: "",
-    pass: "",
-  });
+  let [data, setdata] = useState(
+    store.getState().auth.entities[store.getState().auth.entities.length - 1].id
+  );
   const [spinner, setSpinner] = useState(true);
   useEffect(() => {
     setTimeout(() => setSpinner(false), 300);
   }, []);
+  let [viewModelstate, setviewModelstate] = useState({
+    username: "",
+    id: +data + 1,
+    img: "./App/Pics/profilepic.jpg",
+    status: "فعال",
+    transaction: "",
+    pass: "",
+    email: "",
+  });
+
   const handleChangename = (event) => {
     setviewModelstate({
       ...viewModelstate,
@@ -45,6 +61,15 @@ const Login = () => {
       pass: event.target.value,
     });
   };
+  const handleChangeprice = (event) => {
+    setviewModelstate({
+      ...viewModelstate,
+      transaction: event.target.value + "$",
+    });
+  };
+  const handleChangeemail = (event) => {
+    setviewModelstate({ ...viewModelstate, email: event.target.value });
+  };
   const {
     register,
     handleSubmit,
@@ -54,59 +79,51 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (event) => {
+  const onSubmit = () => {
     const captchaValue = recaptcha.current.getValue();
     if (!captchaValue) {
-      settoast3(true);
-      setTimeout(() => settoast3(false), 1500);
+      settoast2(true);
+      setTimeout(() => settoast2(false), 1500);
     } else {
-      const payload = users.find(
-        (user) =>
-          user.username === viewModelstate.username &&
-          user.pass == viewModelstate.pass
-      );
-      if (payload?.username == viewModelstate.username) {
-        dispatch({
-          type: "log",
-          payload: payload,
-        });
-        settoast(true);
-        setTimeout(() => settoast(false), 1500);
-      } else {
-        settoast2(true);
-        setTimeout(() => settoast2(false), 1500);
-      }
+      setviewModelstate({
+        ...viewModelstate,
+        id: viewModelstate.id + 1,
+      });
+
+      dispatch({
+        type: "sign",
+        payload: viewModelstate,
+      });
+      settoast(true);
+      setTimeout(() => settoast(false), 1500);
       window.grecaptcha.reset();
       reset();
     }
   };
+
   return (
     <>
-      {istoast && <Toast text="با موفقیت وارد شدید" />}
-      {istoast2 && <Toast text="اکانتی با این اسم و رمز وجود ندارد" />}
-      {istoast3 && <Toast text="لظفا روی گزینه من ربات نیستم بزنید" />}
+      {istoast && <Toast text="کاربر با موفقیت اضافه شد" />}
+      {istoast2 && <Toast text="لظفا روی گزینه من ربات نیستم بزنید" />}
 
       {spinner && <Spinner />}
       {!spinner && (
-        <div className="login-box">
-          <p>ورود</p>
+        <div className="login-box login-box-sign">
+          <p>ثبت نام</p>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Form.Label className="formlable">
               نام کاربری<sup className="errortext">*</sup>
             </Form.Label>
             <div className="user-box">
               <Form.Control
-                className="input"
                 {...register("firstname")}
                 type="text"
                 onChange={handleChangename}
                 autocomplete="off"
               />
-
               <p className="errortext">{errors.firstname?.message}</p>
             </div>
             <Form.Label className="formlable">
-              {" "}
               رمز ورود<sup className="errortext">*</sup>
             </Form.Label>
             <div className="user-box">
@@ -114,9 +131,33 @@ const Login = () => {
                 {...register("pass")}
                 type="password"
                 onChange={handleChangepass}
+                autocomplete="off"
               />
-
               <p className="errortext">{errors.pass?.message}</p>
+            </div>
+            <Form.Label className="formlable">
+              مبلغ ورود<sup className="errortext">*</sup>
+            </Form.Label>
+            <div className="user-box">
+              <Form.Control
+                {...register("price")}
+                type="number"
+                onChange={handleChangeprice}
+                autocomplete="off"
+              />
+              <p className="errortext">{errors.price?.message}</p>
+            </div>
+            <Form.Label className="formlable">
+              ایمیل<sup className="errortext">*</sup>
+            </Form.Label>
+            <div className="user-box">
+              <Form.Control
+                {...register("email")}
+                type="text"
+                onChange={handleChangeemail}
+                autocomplete="off"
+              />
+              <p className="errortext">{errors.email?.message}</p>
             </div>
             <button className="log-button" type="submit">
               <span></span>
@@ -127,9 +168,9 @@ const Login = () => {
             </button>
           </form>
           <p>
-            میخواهید اکانت بسازید ؟{" "}
-            <Link to="/sign" className="linktosigntext">
-              ثبت نام
+            اکانت دارید ؟{" "}
+            <Link to="/" className="linktosigntext">
+              ورود
             </Link>
             <div className="repacparent">
               <ReCAPTCHA
@@ -146,4 +187,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Sign;

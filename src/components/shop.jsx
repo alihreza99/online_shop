@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { store } from "../../redux/store";
+import { store } from "../redux/store";
 import { useDispatch } from "react-redux";
-import Num from "../../components/num";
+import Num from "./num";
 import toast from "react-hot-toast";
 
 export default function Shop() {

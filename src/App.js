@@ -22,12 +22,12 @@ import "./assets/Fonts/Vazir-Black-FD.ttf";
 import "./App.css";
 
 
-const Login = react.lazy(() => import("./page/login/index"));
-const Sign = react.lazy(() => import("./page/signin/index"));
+const Login = react.lazy(() => import("./page/auth/login/index"));
+const Sign = react.lazy(() => import("./page/auth/signin/index"));
 const Home = react.lazy(() => import("./page/home/index"));
-const Shop = react.lazy(() => import("./page/home/shop"));
-const Done = react.lazy(() => import("./page/home/done"));
-const List = react.lazy(() => import("./page/home/allitems"));
+const Shop = react.lazy(() => import("./components/shop"));
+const Done = react.lazy(() => import("./components/done"));
+const List = react.lazy(() => import("./components/allitems"));
 
 function App() {
   const admin = useSelector((state) => state.auth.admin);

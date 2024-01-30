@@ -2,6 +2,8 @@
   justify-content: center;
   position: absolute;
   display: grid;
+  justify-content: center;
+  align-items: center;
   column-gap: 3%;
   grid-template-columns: 30% 30% 30%;
   padding: 10px;

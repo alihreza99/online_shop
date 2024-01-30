@@ -13,55 +13,52 @@ function NavbarIndex({ Admin }) {
   }, [store.getState().auth.shopitems.length]);
   return (
     <>
-      <div className="nav">
-        {admin && (
-          <>
-            <div className="navleft">
-              <Link to="/" className="routlink">
-                <div className="routlinktext" href="#action1">
-                  خانه <i className="fa-solid fa-house"></i>
-                </div>
-              </Link>
-              <Link to="/list" className="routlink">
-                <div className="routlinktext" href="#action2">
-                  همه کالاها <i className="fa-solid fa-shop"></i>
-                </div>
-              </Link>
-              <Link to="/done" className="routlink">
-                <div className="routlinktext" href="#action2">
-                  تکمیل خرید <i className="fa-solid fa-bag-shopping"></i>
-                </div>
-              </Link>
-              <Link to="/shop" className="routlink">
-                <div>
-                  آیتم های خریداری شده
-                  <i className="fa-solid fa-cart-shopping">
-                    {store.getState().auth.shopitems.length != 0 && (
-                      <div className="numberofitems">
-                        <p>{num}</p>
-                      </div>
-                    )}
-                  </i>
-                </div>
-              </Link>
-              <Link to="/" className="routlink">
-                <div
-                  className="routlinktextdelete"
-                  href="#action3"
-                  onClick={() => {
-                    dispatch({
-                      type: "logout",
-                    });
-                  }}
-                >
-                  خروج<i className="fa-solid fa-right-from-bracket"></i>
-                </div>
-              </Link>
-            </div>
-            <div className="navright"></div>
-          </>
-        )}
-      </div>
+      {admin && (
+        <>
+          <div className="nav">
+            <Link to="/" className="routlink btn">
+              <div className="routlinktext" href="#action1">
+                خانه <i className="fa-solid fa-house"></i>
+              </div>
+            </Link>
+            <Link to="/list" className="routlink btn">
+              <div className="routlinktext" href="#action2">
+                همه کالاها <i className="fa-solid fa-shop"></i>
+              </div>
+            </Link>
+            <Link to="/done" className="routlink btn">
+              <div className="routlinktext" href="#action2">
+                تکمیل خرید <i className="fa-solid fa-bag-shopping"></i>
+              </div>
+            </Link>
+            <Link to="/shop" className="routlink btn">
+              <div>
+                آیتم های خریداری شده
+                <i className="fa-solid fa-cart-shopping">
+                  {store.getState().auth.shopitems.length != 0 && (
+                    <div className="numberofitems">
+                      <p>{num}</p>
+                    </div>
+                  )}
+                </i>
+              </div>
+            </Link>
+            <Link to="/" className="routlink">
+              <div
+                className="routlinktextdelete btn"
+                href="#action3"
+                onClick={() => {
+                  dispatch({
+                    type: "logout",
+                  });
+                }}
+              >
+                خروج<i className="fa-solid fa-right-from-bracket"></i>
+              </div>
+            </Link>
+          </div>
+        </>
+      )}
     </>
   );
 }

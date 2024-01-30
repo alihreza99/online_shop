@@ -1,7 +1,7 @@
 import react, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-import Card from "../../components/card";
+import Card from "../components/card";
 
 export default () => {
   const [items, setitems] = useState([]);
@@ -17,7 +17,7 @@ export default () => {
 
   let currentPageRef = useRef(null);
   const [currentPage, setcurrentPage] = useState(1);
-  const recordperPage = 3;
+  const recordperPage = 5;
   const lastindex = recordperPage * currentPage;
   const firstindex = lastindex - recordperPage;
   const records = items?.slice(firstindex, lastindex);
@@ -67,11 +67,7 @@ export default () => {
                         }
                       }}
                     >
-
-                      
                       {listitem}
-
-
                     </div>
                   </div>
                 </div>
@@ -93,7 +89,9 @@ export default () => {
                 </a>
 
                 <Link to="./list">
-                  <button className="toallitems">تمام کالا ها</button>
+                  <button className="toallitems btn btn-primary">
+                    تمام کالا ها
+                  </button>
                 </Link>
               </div>
             </div>

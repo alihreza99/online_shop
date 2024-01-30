@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { store } from "../../redux/store.js";
-import Spinner from "../../components/spinner";
+import { store } from "../redux/store";
 export default function UserIndex() {
   const [userdata, setuserdata] = useState(store.getState());
   const [spinner, setSpinner] = useState(true);
