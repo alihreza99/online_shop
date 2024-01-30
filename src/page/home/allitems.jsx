@@ -54,6 +54,7 @@ export default function Kala() {
             <div class="searchBar">
               <input
                 className="input"
+                placeholder={"دسته بندی ها"}
                 onChange={(e) => {
                   setSearch(e.target.value.toLowerCase());
                 }}
@@ -80,7 +81,7 @@ export default function Kala() {
                 </>
               );
             }
-            
+
             if (data.category == selectedOption.value) {
               return (
                 <>
