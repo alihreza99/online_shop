@@ -1,5 +1,6 @@
 import react, { Suspense, useState, useEffect } from "react";
 import Navbar from "./layout/navbar";
+import Footer from "./layout/footer";
 import { Toaster } from "react-hot-toast";
 import NotFound from "./components/notFound";
 import { Route, Routes } from "react-router";
@@ -20,12 +21,14 @@ import "./assets/Fonts/A-Iranian-Sans/iraniansans.ttf";
 import "./assets/Fonts/Vazir-Bold.ttf";
 import "./assets/Fonts/Vazir-Black-FD.ttf";
 import "./App.css";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { CartProvider } from "react-use-cart";
 
 const Login = react.lazy(() => import("./page/auth/login/index"));
 const Sign = react.lazy(() => import("./page/auth/signin/index"));
 const Home = react.lazy(() => import("./page/home/index"));
-const Shop = react.lazy(() => import("./components/shop"));
+const Shop = react.lazy(() => import("./page/shop/shop"));
 const Done = react.lazy(() => import("./components/done"));
 const List = react.lazy(() => import("./components/allitems"));
 
@@ -34,43 +37,47 @@ function App() {
   localStorage.setItem("labelCount", JSON.stringify([]));
   const [spinner, setSpinner] = useState(true);
   useEffect(() => {
-    setTimeout(() => setSpinner(false), 300);
+    const timeoutId = setTimeout(() => setSpinner(false), 300);
+    return () => clearTimeout(timeoutId);
   }, []);
   return (
     <>
-      {spinner && <Spinner />}
+      <CartProvider>
+        {spinner && <Spinner />}
 
-      {!spinner && (
-        <>
-          <Toaster />
-          <Error>
-            <Suspense>
-              {admin && (
-                <>
-                  <Navbar Admin={admin} />
-                  <Routes>
-                    <Route path="" element={<Home />} />
-                    <Route path="/shop" element={<Shop />} />
-                    <Route path="/list" element={<List />} />
-                    <Route path="/done" element={<Done />} />
+        {!spinner && (
+          <>
+            <Toaster />
+            <Error>
+              <Suspense>
+                {admin && (
+                  <>
+                    <Navbar Admin={admin} />
+                    <Routes>
+                      <Route path="" element={<Home />} />
+                      <Route path="/shop" element={<Shop />} />
+                      <Route path="/list" element={<List />} />
+                      <Route path="/done" element={<Done />} />
 
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </>
-              )}
-              {!admin && (
-                <>
-                  <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route path="/sign" element={<Sign />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </>
-              )}
-            </Suspense>
-          </Error>
-        </>
-      )}
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                    <Footer />
+                  </>
+                )}
+                {!admin && (
+                  <>
+                    <Routes>
+                      <Route path="/" element={<Login />} />
+                      <Route path="/sign" element={<Sign />} />
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </>
+                )}
+              </Suspense>
+            </Error>
+          </>
+        )}
+      </CartProvider>
     </>
   );
 }

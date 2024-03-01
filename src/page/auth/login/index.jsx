@@ -31,7 +31,7 @@ const Login = () => {
   });
   const [spinner, setSpinner] = useState(true);
   useEffect(() => {
-    setTimeout(() => setSpinner(false), 300);
+     setTimeout(() => setSpinner(false), 300);
   }, []);
   const handleChangename = (event) => {
     setviewModelstate({
@@ -58,7 +58,8 @@ const Login = () => {
     const captchaValue = recaptcha.current.getValue();
     if (!captchaValue) {
       settoast3(true);
-      setTimeout(() => settoast3(false), 1500);
+      const timeoutId = setTimeout(() => settoast3(false), 1500);
+      
     } else {
       const payload = users.find(
         (user) =>
@@ -71,13 +72,14 @@ const Login = () => {
           payload: payload,
         });
         settoast(true);
-        setTimeout(() => settoast(false), 1500);
+        const timeoutId2 = setTimeout(() => settoast(false), 1500);
       } else {
         settoast2(true);
-        setTimeout(() => settoast2(false), 1500);
+       const timeoutId3 = setTimeout(() => settoast2(false), 1500);
       }
       window.grecaptcha.reset();
       reset();
+      
     }
   };
   return (
@@ -118,10 +120,6 @@ const Login = () => {
               <p className="errortext">{errors.pass?.message}</p>
             </div>
             <button className="log-button" type="submit">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
               ورود
             </button>
           </form>

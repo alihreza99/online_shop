@@ -1,17 +1,11 @@
-.nav{
-  position: relative;
+.navbar {
+  height: 60px;
   width: 100%;
-  top: 0;
-  height: 80px;
-  background-color: rgb(101, 104, 109);
-  direction: rtl;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
-
-
-.routlink{
+.navbar-nav{
+  width: 100%;
+}
+.routlink {
   text-decoration: none;
   margin-top: 25px;
   margin-left: 10px;
@@ -19,38 +13,71 @@
   color: aliceblue;
   margin-right: 20px;
 }
-.routlinktextdelete{
+.routlinktextdelete {
   background-color: red;
   color: rgb(5, 5, 5);
 }
-.shop{
+
+.nav-shop{
+  margin-top: 30px;
+}
+.shop {
   font-size: 20px;
 }
-.numberofitems{
+.numberofitems {
   width: 25px;
   height: 25px;
   background-color: red;
-  top: 12px;
+  top: 20px;
   border-radius: 35px;
-  position:absolute;
+  position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.numberofitems p{
+.numberofitems p {
   color: white;
   font-size: smaller;
   margin-top: 5px;
 }
 
-
-
-
-
-
-
-@media only screen and (max-width: 550px) {
-.nav{
-  height: 120px;
+.navbar-nav {
+  margin-bottom: 20px;
+}
+.navleft{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 10px;
+}
+@media only screen and (max-width: 576px) {
+  .navbar {
+    height: 350px;
+  }
+  .numberofitems {
+    top: 12px;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .page-item1 {
+    position: absolute;
+    margin-top: 320px;
+  }
+  .page-item2 {
+    position: absolute;
+    margin-top: 320px;
+    right: 5%;
+  }
+  .carousel-control-prev,
+  .carousel-control-next {
+    top: 270px;
+  }
+  .navleft{
+  display: flex;
+  flex-direction: row;
+  position: none;
+  left: 10%;
 }
 }

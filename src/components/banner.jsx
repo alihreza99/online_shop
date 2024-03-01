@@ -18,6 +18,7 @@ export default function UserIndex() {
 
   useEffect(() => {
     setTimeout(() => setSpinner(false), 500);
+    
   }, []);
   let currentPageRef = useRef(null);
   const [currentPage, setcurrentPage] = useState(2);

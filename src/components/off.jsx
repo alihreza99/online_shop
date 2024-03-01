@@ -35,11 +35,11 @@ export default function Off() {
   }
 
   const listitem = records?.map((slide, index) => {
-    const newprice = (slide.price * 60) / 100;
+    const newprice = (slide?.price * 60) / 100;
     return (
       <div key={index}>
         <Card
-          id={slide.id}
+          id={slide?.id}
           img={slide?.image}
           title={slide?.category}
           price={slide?.price}

@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
-import Button from "react-bootstrap/Button";
 import Card from "./offcard";
+import Spinner from "../components/spinner";
+
 export default function Kala() {
   const [content, setContent] = useState(null);
+  const [category, setcategory] = useState(null);
+  const [spinner, setSpinner] = useState(false);
+  const [all, setall] = useState(true);
+
   const [listShop, setListShop] = useState(
     JSON.parse(localStorage.getItem("labelCount"))
   );
@@ -30,14 +35,32 @@ export default function Kala() {
 
   const filteredProducts = content?.filter((product) => {
     if (
-      product.id.toString().toLowerCase().includes(search) ||
-      product.price.toString().toLowerCase().includes(search) ||
-      product.title.toLowerCase().includes(search) ||
-      product.category.toLowerCase().includes(search)
+      product?.id.toString().toLowerCase().includes(search) ||
+      product?.price.toString().toLowerCase().includes(search) ||
+      product?.title.toLowerCase().includes(search) ||
+      product?.category.toLowerCase().includes(search)
     ) {
       return product;
     }
   });
+
+  function onclickbtn(e) {
+    console.log(selectedOption);
+    setTimeout(() => setSpinner(true), 300);
+    setall(false);
+    if (e.value == "all") {
+      setall(true);
+    }
+    fetch(`https://fakestoreapi.com/products/category/${e.value}`)
+      .then((res) => res.json())
+      .then((res) => {
+        setTimeout(() => setSpinner(false), 600);
+
+        setcategory(res);
+        console.log(category);
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <>
       <div className="parent">
@@ -47,7 +70,7 @@ export default function Kala() {
               <Select
                 className="select"
                 defaultValue={selectedOption}
-                onChange={setSelectedOption}
+                onChange={onclickbtn}
                 options={options}
                 placeholder={"دسته بندی ها"}
               />
@@ -66,40 +89,95 @@ export default function Kala() {
         </div>
 
         <div className="pedar">
-          {filteredProducts?.map((data, index) => {
-            console.log(selectedOption);
-            if (selectedOption == "all" || selectedOption.value == "all") {
-              return (
-                <>
-                  <div className="pedar_items">
-                    <Card
-                      id={data.id}
-                      img={data.image}
-                      title={data.category}
-                      price={data.price}
-                    />
-                  </div>
-                </>
-              );
-            }
-
-            if (data.category == selectedOption.value) {
-              return (
-                <>
-                  <div className="pedar_items">
-                    <Card
-                      id={data.id}
-                      img={data.image}
-                      title={data.category}
-                      price={data.price}
-                    />
-                  </div>
-                </>
-              );
-            }
-          })}
+          {all && (
+            <>
+              {content?.map((item) => {
+                return (
+                  <>
+                    <div className="pedar_items">
+                      <Card
+                        id={item?.id}
+                        img={item?.image}
+                        title={item?.category}
+                        price={item?.price}
+                      />
+                    </div>
+                  </>
+                );
+              })}
+            </>
+          )}
+          {spinner && (
+            <>
+              <div className="itemloading">
+                {" "}
+                <div>
+                  <Spinner />
+                </div>
+              </div>
+            </>
+          )}
+          {!spinner && (
+            <>
+              {category?.map((item) => {
+                return (
+                  <>
+                    <div className="pedar_items">
+                      <Card
+                        id={item?.id}
+                        img={item?.image}
+                        title={item?.category}
+                        price={item?.price}
+                        num={item?.number}
+                      />
+                    </div>
+                  </>
+                );
+              })}
+            </>
+          )}
         </div>
       </div>
     </>
   );
 }
+
+
+
+
+
+
+
+{/* <div className="pedar">
+  {filteredProducts?.map((data, index) => {
+    if (selectedOption == "all" || selectedOption.value == "all") {
+      return (
+        <>
+          <div className="pedar_items">
+            <Card
+              id={data?.id}
+              img={data?.image}
+              title={data?.category}
+              price={data?.price}
+            />
+          </div>
+        </>
+      );
+    }
+
+    if (data?.category == selectedOption.value) {
+      return (
+        <>
+          <div className="pedar_items">
+            <Card
+              id={data?.id}
+              img={data?.image}
+              title={data?.category}
+              price={data?.price}
+            />
+          </div>
+        </>
+      );
+    }
+  })}
+</div>;*/}

@@ -2,13 +2,14 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import Select from "react-select";
-import { city } from "./../data";
+import { city } from "../services/data";
 export default function Done() {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const tokyo = { lng: 52.67895, lat: 36.55132 };
   const [zoom] = useState(14);
   maptilersdk.config.apiKey = "iJSDRH4hvq23Ye9Ae39p";
+
   useEffect(() => {
     if (map.current) return;
 
@@ -19,10 +20,9 @@ export default function Done() {
       zoom: zoom,
     });
   }, [tokyo.lng, tokyo.lat, zoom]);
-
+  
   const [data, setData] = useState();
   const [data2, setData2] = useState();
-
 
   const options = [
     { value: "1", label: "آذربایجان شرقی" },
@@ -61,69 +61,66 @@ export default function Done() {
     return { value: index, label: c.name };
   });
   console.log(cities[0]);
-  const [isValid, setIsValid] = useState(false);
-  const [isValid2, setIsValid2] = useState(false);
+  const [isValid, setIsValid] = useState(true);
+  const [isValid2, setIsValid2] = useState();
 
-
-  useEffect(() => {
+  function onclick1() {
     setIsValid(data ? true : false);
-  }, [data]);
+  }
 
-  const FormSubmit = (e) => {
-   
-  };
+  const FormSubmit = (e) => {};
   useEffect(() => {
     setIsValid2(data2 ? true : false);
   }, [data2]);
 
-  const FormSubmit2 = (e) => {
-    
-  };
+  const FormSubmit2 = (e) => {};
 
   return (
     <>
-      <div>
-        <form className="locations" onSubmit={FormSubmit}>
-          <div className="locationsselect">
-            <div>
-              <Select
-                className="location"
-                options={options}
-                onChange={(e) => setData(e.value)}
-                value={options.filter(function (option) {
-                  return option.value === data;
-                })}
-                label="Select option"
-                placeholder={"استان ها"}
-                menuPlacement="top"
-                required
-              />
-              {!isValid && <p>لطفا استان خود را انتخاب کنید</p>}
+      <div className="done-page">
+        <div>
+          <form className="locations" onSubmit={FormSubmit}>
+            <div className="locationsselect">
+              <div>
+                <Select
+                  className="location"
+                  options={options}
+                  onChange={(e) => setData(e.value)}
+                  value={options.filter(function (option) {
+                    return option.value === data;
+                  })}
+                  label="Select option"
+                  placeholder={"استان ها"}
+                  menuPlacement="top"
+                  required
+                />
+                {!isValid && <p>لطفا استان خود را انتخاب کنید</p>}
+              </div>
+              <div>
+                <Select
+                  className="location"
+                  options={cities}
+                  onChange={(e) => setData2(e.value)}
+                  value={cities.filter(function (option) {
+                    return option.value === data2;
+                  })}
+                  label="Select option"
+                  placeholder={"شهر ها"}
+                  menuPlacement="top"
+                  required
+                />
+                {!isValid && <p>لطفا شهر خود را انتخاب کنید</p>}
+              </div>
             </div>
-            <div>
-              <Select
-                className="location"
-                options={cities}
-                onChange={(e) => setData2(e.value)}
-                value={cities.filter(function (option) {
-                  return option.value === data2;
-                })}
-                label="Select option"
-                placeholder={"شهر ها"}
-                menuPlacement="top"
-                required
-              />
-              {!isValid && <p>لطفا شهر خود را انتخاب کنید</p>}
-            </div>
-          </div>
 
-          <button className="submitbtn" disabled={!isValid}>
-            ثبت نهایی خرید
-          </button>
-        </form>
-      </div>
-      <div className="map-wrap">
-        <div ref={mapContainer} className="map" />
+            <button onClick={onclick1} className="submitbtn btn btn-primary">
+              ثبت نهایی خرید
+            </button>
+          </form>
+        </div>
+        <div className="map-wrap">
+          <div ref={mapContainer} className="map" />
+        </div>
       </div>
     </>
   );

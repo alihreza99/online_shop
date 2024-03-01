@@ -122,8 +122,10 @@
   color: red;
 }
 
+
+
 .form-control input {
-  width: 50%;
+  width: 300px;
   margin-top: 20px;
   margin-right: 10%;
   outline: none;
@@ -138,17 +140,26 @@
 #check {
   margin-left: 90%;
 }
+.formbtnp{
+ position: relative;
+ width: 100%;
+ right: 0;
+}
 .log-button {
   border: none;
   border-radius: 5px;
+  margin-bottom: 15px;
   background-color: #5c5e63;
   color: whitesmoke;
   height: 50px;
-  width: 50%;
   direction: rtl;
-  margin-left: 25%;
+  display: flex;
   margin-top: 20px;
   text-align: center;
+}
+.formq{
+  margin-bottom: 30px;
+
 }
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -172,7 +183,7 @@ label > sup {
 }
 .repacparent {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -201,6 +212,7 @@ label > sup {
   top: 50%;
   left: 50%;
   width: 400px;
+  height: 555px;
   padding: 40px;
   margin: 20px auto;
   transform: translate(-50%, -55%);
@@ -208,7 +220,7 @@ label > sup {
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .login-box-sign {
   direction: rtl;
@@ -216,6 +228,7 @@ label > sup {
   top: 80%;
   left: 50%;
   width: 400px;
+  height: 800px;
   padding: 40px;
   margin: 20px auto;
   transform: translate(-50%, -55%);
@@ -226,7 +239,6 @@ label > sup {
 }
 .login-box p:first-child {
   direction: rtl;
-  margin: 0 0 30px;
   padding: 0;
   color: #fff;
   text-align: center;
@@ -271,6 +283,7 @@ label > sup {
   color: #fff;
   font-size: 12px;
 }
+
 
 .log-button {
   direction: rtl;
